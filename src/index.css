@@ -1,6 +1,10 @@
-html{
+html {
   color: black !important;
   background-color: white !important;
+}
+* {
+  font-family: "Cormorant Garamond", serif;
+  font-family: "Libre Baskerville", serif;
 }
 @tailwind base;
 @tailwind components;
