@@ -13,7 +13,7 @@ const Header = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu text-xl dropdown-content mt-5 p-3 shadow rounded-box w-56"
+              className="menu bg-white text-xl dropdown-content mt-5 p-3 shadow rounded-box w-56"
             >
               <li>
                 <Link to="/">Home</Link>

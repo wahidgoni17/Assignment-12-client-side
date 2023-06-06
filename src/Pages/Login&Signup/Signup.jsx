@@ -20,6 +20,28 @@ const Signup = () => {
                 <h1 className="text-4xl font-bold">Sign Up</h1>
               </div>
               <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Name"
+                name="name"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo Url</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Photo-Url"
+                name="photo"
+                className="input input-bordered"
+              />
+            </div>
+              <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
@@ -41,11 +63,22 @@ const Signup = () => {
                   className="input input-bordered"
                 />
               </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Confirm Password</span>
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Confirm Password"
+                  className="input input-bordered"
+                />
+              </div>
               <div className="form-control mt-6">
                 <input
                   className="btn btn-primary text-white border-none"
                   type="submit"
-                  value="Log In"
+                  value="Sign Up"
                 />
               </div>
             </form>
