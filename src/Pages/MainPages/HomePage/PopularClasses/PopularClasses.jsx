@@ -1,6 +1,5 @@
 import Title from "../../../../Component/Title";
 import useClasses from "../../../../Hooks/useClasses";
-import SingleClass from "./SingleClass";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
