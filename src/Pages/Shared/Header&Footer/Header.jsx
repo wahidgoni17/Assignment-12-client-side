@@ -1,8 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaUserAlt } from "react-icons/fa";
+import useAuth from "../../../Hooks/useAuth";
 
 const Header = () => {
+  const { user, logOut } = useAuth();
+  const handleLogout = () => {
+    logOut()
+      .then((reuslt) => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <>
       <div className="navbar py-4 px-6">
@@ -24,9 +33,11 @@ const Header = () => {
               <li>
                 <Link>Classes</Link>
               </li>
-              <li>
-                <Link to="dashboard">Dashboard</Link>
-              </li>
+              {user && (
+                <li>
+                  <Link to="dashboard">Dashboard</Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>
@@ -39,14 +50,23 @@ const Header = () => {
           </Link>
         </div>
         <div className="navbar-end">
-          <div className="text-2xl mr-5">
-            <FaUserAlt />
-          </div>
-          <Link to="/login">
-            <button className="btn btn-primary btn-outline border-0 border-y-2">
-              LogIn
-            </button>
-          </Link>
+          {user ? (
+            <div className="text-2xl mr-5">
+              <FaUserAlt />
+            </div>
+          ) : (
+            <Link to="/login">
+              <button className="btn btn-primary btn-outline border-0 mr-4 border-y-2">
+                LogIn
+              </button>
+            </Link>
+          )}
+          {user && <button
+            onClick={handleLogout}
+            className="btn btn-secondary btn-outline border-0 border-y-2"
+          >
+            LogOut
+          </button>}
         </div>
       </div>
     </>

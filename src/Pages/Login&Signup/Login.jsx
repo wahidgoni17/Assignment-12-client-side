@@ -4,12 +4,20 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
   const [show, setShow] = useState(false);
+  const {logIn} = useAuth()
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     console.log(data);
+    logIn(data.email, data.password)
+    .then(result =>{
+      const logged = result.user
+      console.log(logged)
+    })
+    .catch(error => console.log(error))
   };
   return (
     <div className="hero min-h-screen">

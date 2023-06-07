@@ -3,8 +3,10 @@ import img from "../../assets/foreign-language-school-logo-vector-4316774.webp";
 import bgimg from "../../assets/authentication.png";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import useAuth from "../../Hooks/useAuth";
 
 const Signup = () => {
+  const {newUser, updateUserProfile} = useAuth()
   const {
     register,
     handleSubmit,
@@ -12,6 +14,14 @@ const Signup = () => {
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
+    newUser(data.email, data.password)
+    .then(result=>{
+      const registeredUser = result.user
+      console.log(registeredUser)
+      updateUserProfile(data.name, data.photo)
+      .then(() =>{})
+    })
+    .catch(error => console.log(error))
   };
   return (
     <>
