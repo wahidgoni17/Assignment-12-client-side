@@ -1,6 +1,6 @@
 import img from "../../assets/foreign-language-school-logo-vector-4316774.webp";
 import bgimg from "../../assets/authentication.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -9,6 +9,7 @@ import useAuth from "../../Hooks/useAuth";
 const Login = () => {
   const [show, setShow] = useState(false);
   const {logIn} = useAuth()
+  const navigate = useNavigate()
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     console.log(data);
@@ -16,6 +17,7 @@ const Login = () => {
     .then(result =>{
       const logged = result.user
       console.log(logged)
+      navigate('/')
     })
     .catch(error => console.log(error))
   };
