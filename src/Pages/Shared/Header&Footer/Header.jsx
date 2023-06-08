@@ -14,7 +14,7 @@ const Header = () => {
   };
   return (
     <>
-      <div className="navbar bg-base-200 bg-opacity-10 text-white fixed z-10 py-4 px-6">
+      <div className="navbar bg-base-200 bg-opacity-20 text-white fixed z-10 py-4 px-6">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost btn-circle text-xl">
@@ -28,10 +28,10 @@ const Header = () => {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link>Instructors</Link>
+                <Link to="/classes">Classes</Link>
               </li>
               <li>
-                <Link>Classes</Link>
+                <Link>Instructors</Link>
               </li>
               {user && (
                 <li>
@@ -52,7 +52,7 @@ const Header = () => {
         <div className="navbar-end">
           {user ? (
             <div className="text-2xl mr-5">
-              <FaUserAlt />
+              <img className="rounded-full w-16 h-16" src={user?.photoURL}/>
             </div>
           ) : (
             <Link to="/login">

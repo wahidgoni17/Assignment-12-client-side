@@ -5,6 +5,7 @@ import Home from "../Pages/MainPages/HomePage/Home/Home";
 import DashHome from "../Pages/DashBoardPages/DashHome/DashHome";
 import Login from "../Pages/Login&Signup/Login";
 import Signup from "../Pages/Login&Signup/Signup";
+import AllClasses from "../Pages/MainPages/ClassesPage/AllClasses";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -13,6 +14,10 @@ const Router = createBrowserRouter([
         {
             path: "/",
             element: <Home></Home>
+        },
+        {
+            path: "/classes",
+            element: <AllClasses></AllClasses>
         },
         {
             path: "login",
