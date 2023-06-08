@@ -6,6 +6,9 @@ import Login from "../Pages/Login&Signup/Login";
 import Signup from "../Pages/Login&Signup/Signup";
 import AllClasses from "../Pages/MainPages/ClassesPage/AllClasses";
 import AllInstructors from "../Pages/MainPages/AllInstructors/AllInstructors";
+import PrivateRoute from "./PrivateRoute";
+import SelectedClasses from "../Pages/DashBoardPages/StudentPage/SelectedClasses";
+import EnrolledClasses from "../Pages/DashBoardPages/StudentPage/EnrolledClasses";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -35,9 +38,16 @@ const Router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashBoard></DashBoard>,
+    element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
     children: [
-        
+        {
+          path: 'selectedClasses',
+          element: <SelectedClasses/>
+        },
+        {
+          path: "enrolledClasses",
+          element: <EnrolledClasses/>
+        }
     ]
   },
 ]);

@@ -6,6 +6,13 @@ html {
   font-family: "Cormorant Garamond", serif;
   font-family: "Libre Baskerville", serif;
 }
+.drawer-side a.active {
+  background-color: rgb(143, 143, 143);
+  color: white;
+}
+.drawer-side a {
+  background-color: transparent;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
