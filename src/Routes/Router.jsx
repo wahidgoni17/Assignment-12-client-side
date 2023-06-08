@@ -9,6 +9,11 @@ import AllInstructors from "../Pages/MainPages/AllInstructors/AllInstructors";
 import PrivateRoute from "./PrivateRoute";
 import SelectedClasses from "../Pages/DashBoardPages/StudentPage/SelectedClasses";
 import EnrolledClasses from "../Pages/DashBoardPages/StudentPage/EnrolledClasses";
+import PaymentHistory from "../Pages/DashBoardPages/StudentPage/PaymentHistory";
+import ManageClasses from "../Pages/DashBoardPages/AdminPage/ManageClasses";
+import ManageUsers from "../Pages/DashBoardPages/AdminPage/ManageUsers";
+import MyClasses from "../Pages/DashBoardPages/InstructorPage/MyClasses";
+import AddClass from "../Pages/DashBoardPages/InstructorPage/AddClass";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -47,7 +52,27 @@ const Router = createBrowserRouter([
         {
           path: "enrolledClasses",
           element: <EnrolledClasses/>
-        }
+        },
+        {
+          path: "paymentHistory",
+          element: <PaymentHistory/>
+        },
+        {
+          path: "manageClasses",
+          element: <ManageClasses/>
+        },
+        {
+          path: "manageUsers",
+          element: <ManageUsers/>
+        },
+        {
+          path: "addClass",
+          element: <AddClass/>
+        },
+        {
+          path: "myClasses",
+          element: <MyClasses/>
+        },
     ]
   },
 ]);
