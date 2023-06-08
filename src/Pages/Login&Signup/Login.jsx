@@ -1,15 +1,18 @@
 import img from "../../assets/foreign-language-school-logo-vector-4316774.webp";
 import bgimg from "../../assets/authentication.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
+import GoogleLogin from "../Shared/GoogleLogin/GoogleLogin";
 
 const Login = () => {
   const [show, setShow] = useState(false);
   const {logIn} = useAuth()
   const navigate = useNavigate()
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     console.log(data);
@@ -17,7 +20,7 @@ const Login = () => {
     .then(result =>{
       const logged = result.user
       console.log(logged)
-      navigate('/')
+      navigate(from, {replace: true})
     })
     .catch(error => console.log(error))
   };
@@ -74,6 +77,7 @@ const Login = () => {
               Create an Account
             </Link>
           </h1>
+          <GoogleLogin></GoogleLogin>
         </div>
       </div>
     </div>

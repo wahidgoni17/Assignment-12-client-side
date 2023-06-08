@@ -1,17 +1,22 @@
 import React from "react";
 import img from "../../assets/foreign-language-school-logo-vector-4316774.webp";
 import bgimg from "../../assets/authentication.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import axios from "axios";
+import GoogleLogin from "../Shared/GoogleLogin/GoogleLogin";
 
 const Signup = () => {
   const {newUser, updateUserProfile} = useAuth()
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
   const onSubmit = (data) => {
     console.log(data);
     newUser(data.email, data.password)
@@ -19,7 +24,25 @@ const Signup = () => {
       const registeredUser = result.user
       console.log(registeredUser)
       updateUserProfile(data.name, data.photo)
-      .then(() =>{})
+      .then(()=>{})
+        // fetch("http://localhost:5050/users", {
+        //   method: "POST",
+        //   headers: {
+        //     "content-type": "application/json",
+        //   },
+        //   body: JSON.stringify(saveUser),
+        // })
+          axios.post("http://localhost:5050/users",{
+            name: data.name, email: data.email
+          })
+          .then((data) => {
+            console.log(data);
+            if (data.data.insertedId) {
+              reset()
+              Swal.fire("Successfully!", "Your Account Is created", "success");
+              navigate("/");
+            }
+          });
     })
     .catch(error => console.log(error))
   };
@@ -157,6 +180,7 @@ const Signup = () => {
                 Go to Login
               </Link>
             </h1>
+            <GoogleLogin></GoogleLogin>
           </div>
         </div>
       </div>

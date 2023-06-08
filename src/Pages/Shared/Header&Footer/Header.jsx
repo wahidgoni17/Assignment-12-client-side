@@ -52,7 +52,7 @@ const Header = () => {
         <div className="navbar-end">
           {user ? (
             <div className="text-2xl mr-5">
-              <img className="rounded-full w-16 h-16" src={user?.photoURL}/>
+              <img className="rounded-full w-12 h-12" src={user?.photoURL}/>
             </div>
           ) : (
             <Link to="/login">

@@ -22,7 +22,7 @@ const PopularInstructors = () => {
         ))}
       </div>
       <div className="text-center my-10">
-        <Link>
+        <Link to="/instructors">
           <button className="btn btn-secondary btn-outline border-0 border-y-2">
             Show All
           </button>
