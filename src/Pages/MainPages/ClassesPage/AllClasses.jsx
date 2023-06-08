@@ -10,10 +10,10 @@ const AllClasses = () => {
     return (
         <>
             <PageBg img={bgImg} 
-            title={"All Classes"}
+            title={"Classes"}
             subtitle={"explore our exclusive courses and fulfill your dream of learning foreign languaga"}></PageBg>
             <Title title={'own your class'} subtitle={"select your favourite language class and learn a foriegn language"}></Title>
-            <div className='grid grid-cols-1 lg:grid-cols-3 mx-10 gap-6'>
+            <div className='grid grid-cols-1 lg:grid-cols-3 mx-10 my-5 gap-6'>
             {
                 classes.map(course=> <Items key={course._id} item={course}></Items>)
             }

@@ -6,6 +6,7 @@ import DashHome from "../Pages/DashBoardPages/DashHome/DashHome";
 import Login from "../Pages/Login&Signup/Login";
 import Signup from "../Pages/Login&Signup/Signup";
 import AllClasses from "../Pages/MainPages/ClassesPage/AllClasses";
+import AllInstructors from "../Pages/MainPages/AllInstructors/AllInstructors";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -18,6 +19,10 @@ const Router = createBrowserRouter([
         {
             path: "/classes",
             element: <AllClasses></AllClasses>
+        },
+        {
+            path: "/instructors",
+            element: <AllInstructors></AllInstructors>
         },
         {
             path: "login",

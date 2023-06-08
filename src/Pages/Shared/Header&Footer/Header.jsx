@@ -31,7 +31,7 @@ const Header = () => {
                 <Link to="/classes">Classes</Link>
               </li>
               <li>
-                <Link>Instructors</Link>
+                <Link to="/instructors">Instructors</Link>
               </li>
               {user && (
                 <li>

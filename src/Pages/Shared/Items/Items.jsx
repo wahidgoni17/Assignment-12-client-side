@@ -7,9 +7,9 @@ const Items = ({ item }) => {
 
   return (
     <>
-      <div className="card w-96 bg-slate-50 shadow-xl">
+      <div className={`card w-96 ${availableSeats === 0 ? "bg-red-400" :"bg-slate-50"}  shadow-xl`}>
         <figure>
-          <img className="h-64 p-3 w-full" src={image} />
+          <img className="h-64 p-3 w-full rounded-3xl" src={image} />
         </figure>
         <div className="card-body text-2xl">
           <h2 className="card-title text-3xl">Language: {name}</h2>
