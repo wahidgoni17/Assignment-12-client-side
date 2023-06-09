@@ -9,12 +9,12 @@ import {
   FaWallet,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
-// TODO list
-const isAdmin = true;
-const isInstructor = false;
-const user = false;
+import useAdmin from "../../Hooks/UseAdmin";
+import useInstructor from "../../Hooks/useInstructor";
 
 const DashBoard = () => {
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
   return (
     <>
       <div className="drawer lg:drawer-open">
@@ -34,28 +34,7 @@ const DashBoard = () => {
           <ul className="menu p-4 text-lg w-64 h-full bg-gray-300">
             {/* Sidebar content here */}
             <h1 className="text-4xl font-bold p-3 mb-5">Fluentia</h1>
-            {user ? (
-              <>
-                <li>
-                  <NavLink to="/dashboard/selectedClasses">
-                    <FaBookOpen />
-                    Selected Classes
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/enrolledClasses">
-                    <FaBookmark />
-                    Enrolled Classes
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/paymentHistory">
-                    <FaWallet />
-                    Payment History
-                  </NavLink>
-                </li>
-              </>
-            ) : isAdmin ? (
+            {isAdmin ? (
               <>
                 <li>
                   <NavLink to="/dashboard/manageUsers">
@@ -86,7 +65,26 @@ const DashBoard = () => {
                 </li>
               </>
             ) : (
-              <></>
+              <>
+                <li>
+                  <NavLink to="/dashboard/selectedClasses">
+                    <FaBookOpen />
+                    Selected Classes
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/enrolledClasses">
+                    <FaBookmark />
+                    Enrolled Classes
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/paymentHistory">
+                    <FaWallet />
+                    Payment History
+                  </NavLink>
+                </li>
+              </>
             )}
             <div className="divider"></div>
             <li>

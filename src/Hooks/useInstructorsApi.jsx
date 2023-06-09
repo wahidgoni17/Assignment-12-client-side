@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-const useInstuctors = () => {
+const useInstuctorsApi = () => {
   const {
     data: instructors = [],
     isLoading: loading,
@@ -15,4 +15,4 @@ const useInstuctors = () => {
   return [instructors, loading, refetch];
 };
 
-export default useInstuctors
+export default useInstuctorsApi
