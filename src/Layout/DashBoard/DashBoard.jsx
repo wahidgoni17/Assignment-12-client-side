@@ -11,10 +11,12 @@ import {
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../Hooks/UseAdmin";
 import useInstructor from "../../Hooks/useInstructor";
+import useClassCart from "../../Hooks/useClassCart";
 
 const DashBoard = () => {
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
+  const [classCart] = useClassCart()
   return (
     <>
       <div className="drawer lg:drawer-open">
@@ -70,6 +72,7 @@ const DashBoard = () => {
                   <NavLink to="/dashboard/selectedClasses">
                     <FaBookOpen />
                     Selected Classes
+                    <div className="badge badge-secondary">+{classCart?.length || 0}</div>
                   </NavLink>
                 </li>
                 <li>

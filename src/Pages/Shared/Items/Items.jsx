@@ -5,28 +5,30 @@ import useAuth from "../../../Hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useClassCart from "../../../Hooks/useClassCart";
 const Items = ({ item }) => {
   const { user } = useAuth();
   const navigate = useNavigate()
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
+  const [,refetch] = useClassCart()
   const { image, name, instructorName, price, availableSeats } = item;
   const handleAddClass = () => {
     if (user && user?.email) {
-      axios
-        .post("http://localhost:5050/carts", {
-          itemId : item._id,
-          image,
-          name,
-          instructorName,
-          price,
-          availableSeats,
-        })
-        .then((res) => {
-          const data = res.data;
+      const classItem = {classItemId : item._id, image, name, instructorName, price, availableSeats}
+      fetch("http://localhost:5050/classCart", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(classItem),
+      })
+        .then((res) => res.json())
+        .then((data) => {
           console.log(data);
           if (data.insertedId) {
-            Swal.fire("Successfully!", "Class added successfully", "success");
+            refetch()
+            Swal.fire("Successfully!", "class added successfully", "success");
           }
         });
     }
