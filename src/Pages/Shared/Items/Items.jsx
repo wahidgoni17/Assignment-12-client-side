@@ -1,13 +1,47 @@
 import React from "react";
+import useAdmin from "../../../Hooks/UseAdmin";
+import useInstructor from "../../../Hooks/useInstructor";
 import useAuth from "../../../Hooks/useAuth";
-
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 const Items = ({ item }) => {
-  //   const { user } = useAuth();
+  const { user } = useAuth();
+  const navigate = useNavigate()
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
   const { image, name, instructorName, price, availableSeats } = item;
-
+  const handleAddClass = () => {
+    if (user && user?.email) {
+      axios
+        .post("http://localhost:5050/carts", {
+          itemId : item._id,
+          image,
+          name,
+          instructorName,
+          price,
+          availableSeats,
+        })
+        .then((res) => {
+          const data = res.data;
+          console.log(data);
+          if (data.insertedId) {
+            Swal.fire("Successfully!", "Class added successfully", "success");
+          }
+        });
+    }
+    else{
+      Swal.fire("oops!", "please login first", "error");
+      navigate("/login", { state: { from: location } });
+    }
+  };
   return (
     <>
-      <div className={`card w-96 ${availableSeats === 0 ? "bg-red-400" :"bg-slate-50"}  shadow-xl`}>
+      <div
+        className={`card w-96 ${
+          availableSeats === 0 ? "bg-red-400" : "bg-slate-50"
+        }  shadow-xl`}
+      >
         <figure>
           <img className="h-64 p-3 w-full rounded-3xl" src={image} />
         </figure>
@@ -17,7 +51,11 @@ const Items = ({ item }) => {
           <p>Available Seats: {availableSeats}</p>
           <p>Price: $ {price}</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-accent btn-outline border-0 border-y-2">
+            <button
+              onClick={() => handleAddClass(item)}
+              disabled={availableSeats === 0 || isAdmin || isInstructor}
+              className="btn btn-accent btn-outline border-0 border-y-2"
+            >
               Select
             </button>
           </div>

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import GoogleLogin from "../Shared/GoogleLogin/GoogleLogin";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -20,6 +21,7 @@ const Login = () => {
     .then(result =>{
       const logged = result.user
       console.log(logged)
+      Swal.fire("Successfully!", "You are Logged in", "success");
       navigate(from, {replace: true})
     })
     .catch(error => console.log(error))

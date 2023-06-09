@@ -13,7 +13,7 @@ const PopularInstructors = () => {
         title={"Our Instructors"}
         subtitle={"Meet our Very Famous Instructors and Explore their classes"}
       ></Title>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-5xl mx-auto">
         {newInstructors.map((instructor, index) => (
           <SingleInstructor
             key={instructor._id}
