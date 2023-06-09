@@ -1,13 +1,25 @@
 import React from "react";
-import { FaBookOpen, FaBookReader, FaBookmark, FaPenSquare, FaRegEdit, FaUserEdit, FaWallet } from "react-icons/fa";
+import {
+  FaBookOpen,
+  FaBookReader,
+  FaBookmark,
+  FaPenSquare,
+  FaRegEdit,
+  FaUserEdit,
+  FaWallet,
+} from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+// TODO list
+const isAdmin = true;
+const isInstructor = false;
+const user = false;
 
 const DashBoard = () => {
   return (
     <>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content">
           {/* Page content here */}
           <Outlet></Outlet>
           <label
@@ -22,48 +34,60 @@ const DashBoard = () => {
           <ul className="menu p-4 text-lg w-64 h-full bg-gray-300">
             {/* Sidebar content here */}
             <h1 className="text-4xl font-bold p-3 mb-5">Fluentia</h1>
-            <li>
-              <NavLink to="/dashboard/selectedClasses">
-                <FaBookOpen />
-                Selected Classes
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/dashboard/enrolledClasses'>
-                <FaBookmark />
-                Enrolled Classes
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/dashboard/paymentHistory'>
-              <FaWallet />
-                Payment History
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/dashboard/manageClasses'>
-                <FaRegEdit />
-                Manage Classes
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/dashboard/manageUsers'>
-              <FaUserEdit />
-                Manage Users
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/dashboard/addClass'>
-              <FaPenSquare />
-                Add Class
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/dashboard/myClasses'>
-              <FaBookReader />
-                My Classes
-              </NavLink>
-            </li>
+            {user ? (
+              <>
+                <li>
+                  <NavLink to="/dashboard/selectedClasses">
+                    <FaBookOpen />
+                    Selected Classes
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/enrolledClasses">
+                    <FaBookmark />
+                    Enrolled Classes
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/paymentHistory">
+                    <FaWallet />
+                    Payment History
+                  </NavLink>
+                </li>
+              </>
+            ) : isAdmin ? (
+              <>
+                <li>
+                  <NavLink to="/dashboard/manageClasses">
+                    <FaRegEdit />
+                    Manage Classes
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/manageUsers">
+                    <FaUserEdit />
+                    Manage Users
+                  </NavLink>
+                </li>
+              </>
+            ) : isInstructor ? (
+              <>
+                <li>
+                  <NavLink to="/dashboard/addClass">
+                    <FaPenSquare />
+                    Add Class
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/myClasses">
+                    <FaBookReader />
+                    My Classes
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <></>
+            )}
             <div className="divider"></div>
             <li>
               <NavLink to="/">Home</NavLink>
