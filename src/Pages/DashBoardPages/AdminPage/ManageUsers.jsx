@@ -3,6 +3,8 @@ import React from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Title from "../../../Component/Title";
 import { FaTrashAlt, FaUser, FaUsers } from "react-icons/fa";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const ManageUsers = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -10,14 +12,63 @@ const ManageUsers = () => {
     const res = await axiosSecure.get("/users");
     return res.data;
   });
-  console.log(users);
+  const handleMakeAdmin = (user) => {
+    axiosSecure
+      .patch(`http://localhost:5050/users/admin/${user._id}`)
+      .then((res) => {
+        const data = res.data;
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire("Updated!", `${user.name} is an Admin Now`, "success");
+        }
+      });
+  };
+  const handleMakeInstructor = (user) => {
+    axiosSecure
+      .patch(`http://localhost:5050/users/instructor/${user._id}`)
+      .then((res) => {
+        const data = res.data;
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire("Updated!", `${user.name} is an Instructor Now`, "success");
+        }
+      });
+  };
+  const handleDelete = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`http://localhost:5050/users/${user._id}`)
+          .then((res) => {
+            const data = res.data;
+            console.log(data);
+            if (data.deletedCount > 0) {
+              refetch();
+              Swal.fire("Deleted!", "user has been deleted.", "success");
+            }
+          });
+      }
+    });
+  };
   return (
     <div>
       <Title
         title={"Manage Users"}
         subtitle={"Manage All users, make Admin and Instructor"}
       ></Title>
-      <h1 className="text-4xl text-center font-bold">Sum of Users = {users.length}</h1>
+      <h1 className="text-4xl text-center font-bold">
+        Sum of Users = {users.length}
+      </h1>
       <div className="overflow-x-auto w-full px-10 py-10">
         <table className="table text-xl w-full">
           {/* head */}
@@ -42,7 +93,7 @@ const ManageUsers = () => {
                     "admin"
                   ) : (
                     <button
-                      // onClick={()=>handleMakeAdmin(user)}
+                      onClick={() => handleMakeAdmin(user)}
                       className="btn btn-md text-white bg-lime-700"
                     >
                       Make Admin
@@ -54,7 +105,7 @@ const ManageUsers = () => {
                     "instructor"
                   ) : (
                     <button
-                      // onClick={()=>handleMakeInstructor(user)}
+                      onClick={() => handleMakeInstructor(user)}
                       className="btn btn-md text-white bg-green-700"
                     >
                       Make Instructor
@@ -63,7 +114,7 @@ const ManageUsers = () => {
                 </td>
                 <td>
                   <button
-                    // onClick={() => handleDelete(user)}
+                    onClick={() => handleDelete(user)}
                     className="btn btn-md text-white bg-red-500"
                   >
                     <FaTrashAlt />

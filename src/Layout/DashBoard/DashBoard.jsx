@@ -58,15 +58,15 @@ const DashBoard = () => {
             ) : isAdmin ? (
               <>
                 <li>
-                  <NavLink to="/dashboard/manageClasses">
-                    <FaRegEdit />
-                    Manage Classes
-                  </NavLink>
-                </li>
-                <li>
                   <NavLink to="/dashboard/manageUsers">
                     <FaUserEdit />
                     Manage Users
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/manageClasses">
+                    <FaRegEdit />
+                    Manage Classes
                   </NavLink>
                 </li>
               </>
