@@ -19,7 +19,7 @@ const SelectedClasses = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5050/users/${item._id}`)
+        axios.delete(`http://localhost:5050/classCart/${item._id}`)
         .then((res) => {
             const data = res.data;
             console.log(data);
@@ -35,19 +35,18 @@ const SelectedClasses = () => {
     <>
       <Title title={"My Selected Classes"}></Title>
       <div className="flex justify-between my-8 px-10">
-        <h1 className="text-3xl font-bold">total class: {classCart.length}</h1>
-        <h1 className="text-3xl font-bold">total price: ${total}</h1>
-        <button className="btn btn-success">pay</button>
+        <h1 className="text-3xl font-bold">Total class: {classCart.length}</h1>
+        <h1 className="text-3xl font-bold">Total price: ${total}</h1>
       </div>
       <div className="overflow-x-auto bg-slate-100 w-full px-10 py-10">
         <table className="table text-xl w-full">
-          {/* head */}
           <thead className="text-black text-xl">
             <tr>
               <th>#</th>
               <th>Class Name</th>
               <th>Instructor Name</th>
-              <th>Available Seats</th>
+              <th>Price</th>
+              <th>Payment</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -57,7 +56,8 @@ const SelectedClasses = () => {
                 <td>{index + 1}</td>
                 <td>{item.name}</td>
                 <td>{item.instructorName}</td>
-                <td>{item.availableSeats}</td>
+                <td>${item.price}</td>
+                <td><button className="btn btn-success">pay</button></td>
                 <td>
                   <button
                     onClick={() => handleDelete(item)}
