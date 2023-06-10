@@ -16,7 +16,7 @@ const Items = ({ item }) => {
   const handleAddClass = () => {
     if (user && user?.email) {
       // const classItem = {classItemId : item._id, image, name, instructorName, price, availableSeats, email: user?.email}
-     axios.post('http://localhost:5050/classCart',{classItemId : item._id, image, name, instructorName, price, availableSeats, email: user?.email})
+     axios.post('https://summer-camp-server-side-omega.vercel.app/classCart',{classItemId : item._id, image, name, instructorName, price, availableSeats, email: user?.email})
         .then((res) => {
           const data = res.data
           console.log(data)

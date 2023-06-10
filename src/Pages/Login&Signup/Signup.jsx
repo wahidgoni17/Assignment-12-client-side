@@ -25,14 +25,7 @@ const Signup = () => {
       console.log(registeredUser)
       updateUserProfile(data.name, data.photo)
       .then(()=>{})
-        // fetch("http://localhost:5050/users", {
-        //   method: "POST",
-        //   headers: {
-        //     "content-type": "application/json",
-        //   },
-        //   body: JSON.stringify(saveUser),
-        // })
-          axios.post("http://localhost:5050/users",{
+          axios.post("https://summer-camp-server-side-omega.vercel.app/users",{
             name: data.name, email: data.email
           })
           .then((data) => {

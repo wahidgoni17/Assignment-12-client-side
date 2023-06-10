@@ -14,7 +14,7 @@ const ManageUsers = () => {
   });
   const handleMakeAdmin = (user) => {
     axiosSecure
-      .patch(`http://localhost:5050/users/admin/${user._id}`)
+      .patch(`https://summer-camp-server-side-omega.vercel.app/users/admin/${user._id}`)
       .then((res) => {
         const data = res.data;
         console.log(data);
@@ -26,7 +26,7 @@ const ManageUsers = () => {
   };
   const handleMakeInstructor = (user) => {
     axiosSecure
-      .patch(`http://localhost:5050/users/instructor/${user._id}`)
+      .patch(`https://summer-camp-server-side-omega.vercel.app/users/instructor/${user._id}`)
       .then((res) => {
         const data = res.data;
         console.log(data);
@@ -48,7 +48,7 @@ const ManageUsers = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure
-          .delete(`http://localhost:5050/users/${user._id}`)
+          .delete(`https://summer-camp-server-side-omega.vercel.app/users/${user._id}`)
           .then((res) => {
             const data = res.data;
             console.log(data);

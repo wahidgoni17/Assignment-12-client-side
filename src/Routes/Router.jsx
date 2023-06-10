@@ -63,7 +63,7 @@ const Router = createBrowserRouter([
         {
           path: "payment/:id",
           element: <Payment/>,
-          loader: ({params}) => fetch(`http://localhost:5050/classCart/${params.id}`)
+          loader: ({params}) => fetch(`https://summer-camp-server-side-omega.vercel.app/classCart/${params.id}`)
         },
         {
           path: "manageClasses",

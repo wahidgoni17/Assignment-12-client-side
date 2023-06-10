@@ -8,7 +8,7 @@ const useInstuctorsApi = () => {
   } = useQuery({
     queryKey: ["instructors"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5050/instructors");
+      const res = await fetch("https://summer-camp-server-side-omega.vercel.app/instructors");
       return res.json();
     },
   });

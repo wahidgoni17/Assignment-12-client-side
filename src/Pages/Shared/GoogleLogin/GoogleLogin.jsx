@@ -13,7 +13,7 @@ const GoogleLogin = () => {
     googleLogIn()
       .then((result) => {
         const googleLogged = result.user;
-        axios.post("http://localhost:5050/users", {
+        axios.post("https://summer-camp-server-side-omega.vercel.app/users", {
             name: googleLogged.displayName,
             email: googleLogged.email,
         })

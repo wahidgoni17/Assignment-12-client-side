@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
       console.log(loggedUser);
       setUser(loggedUser);
       if(loggedUser){
-        axios.post('http://localhost:5050/jwt',{
+        axios.post('https://summer-camp-server-side-omega.vercel.app/jwt',{
           email: loggedUser.email
         })
         .then(data =>{

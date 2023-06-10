@@ -16,7 +16,7 @@ const AddClass = () => {
     const price = form.price.value;
     const seats = form.seats.value;
     axios
-      .post("http://localhost:5050/class", {
+      .post("https://summer-camp-server-side-omega.vercel.app/class", {
         email,
         instructorName,
         name,

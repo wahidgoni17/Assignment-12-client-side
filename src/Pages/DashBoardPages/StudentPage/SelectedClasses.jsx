@@ -21,7 +21,7 @@ const SelectedClasses = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5050/classCart/${item._id}`)
+          .delete(`https://summer-camp-server-side-omega.vercel.app/classCart/${item._id}`)
           .then((res) => {
             const data = res.data;
             console.log(data);

@@ -27,7 +27,7 @@ const MyClasses = () => {
             </tr>
           </thead>
           <tbody>
-            {myClass.map((item, index) => (
+            {myClassData.map((item, index) => (
               <tr key={item._id}>
                 <td>{index + 1}</td>
                 <td>{item.name}</td>
