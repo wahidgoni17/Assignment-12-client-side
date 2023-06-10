@@ -11,7 +11,6 @@ const useMyClass = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure(`/class?email=${user?.email}`)
-      console.log(res.data)
       return res.data
     },
   })

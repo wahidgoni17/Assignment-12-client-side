@@ -16,6 +16,7 @@ import MyClasses from "../Pages/DashBoardPages/InstructorPage/MyClasses";
 import AddClass from "../Pages/DashBoardPages/InstructorPage/AddClass";
 import InstructorRoute from "./InstructorRoute";
 import AdminRoute from "./AdminRoute";
+import Payment from "../Pages/DashBoardPages/StudentPage/Payment";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -58,6 +59,11 @@ const Router = createBrowserRouter([
         {
           path: "paymentHistory",
           element: <PaymentHistory/>
+        },
+        {
+          path: "payment/:id",
+          element: <Payment/>,
+          loader: ({params}) => fetch(`http://localhost:5050/classCart/${params.id}`)
         },
         {
           path: "manageClasses",

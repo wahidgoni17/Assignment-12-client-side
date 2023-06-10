@@ -14,7 +14,9 @@ const Header = () => {
   };
   return (
     <>
-      <div className="navbar bg-base-200 bg-opacity-20 text-white fixed z-10 py-4 px-6">
+      <div
+        className={`navbar bg-base-200 bg-opacity-20 text-white fixed z-10 py-4 px-6`}
+      >
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost btn-circle text-xl">
@@ -52,7 +54,7 @@ const Header = () => {
         <div className="navbar-end">
           {user ? (
             <div className="text-2xl mr-5">
-              <img className="rounded-full w-12 h-12" src={user?.photoURL}/>
+              <img className="rounded-full w-12 h-12" src={user?.photoURL} />
             </div>
           ) : (
             <Link to="/login">
@@ -61,12 +63,14 @@ const Header = () => {
               </button>
             </Link>
           )}
-          {user && <button
-            onClick={handleLogout}
-            className="btn btn-secondary btn-outline border-0 border-y-2"
-          >
-            LogOut
-          </button>}
+          {user && (
+            <button
+              onClick={handleLogout}
+              className="btn btn-secondary btn-outline border-0 border-y-2"
+            >
+              LogOut
+            </button>
+          )}
         </div>
       </div>
     </>

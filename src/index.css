@@ -13,6 +13,22 @@ html {
 .drawer-side a {
   background-color: transparent;
 }
+
+body.dark {
+  background-color: #1a202c;
+  color: #f7fafc;
+}
+
+.header.dark {
+  background-color: #4a5568;
+  color: #e2e8f0;
+}
+
+.footer.dark {
+  background-color: #4a5568;
+  color: #e2e8f0;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

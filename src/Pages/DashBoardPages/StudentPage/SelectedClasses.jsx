@@ -4,6 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import Title from "../../../Component/Title";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const SelectedClasses = () => {
   const [classCart, refetch] = useClassCart();
@@ -19,8 +20,9 @@ const SelectedClasses = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5050/classCart/${item._id}`)
-        .then((res) => {
+        axios
+          .delete(`http://localhost:5050/classCart/${item._id}`)
+          .then((res) => {
             const data = res.data;
             console.log(data);
             if (data.deletedCount > 0) {
@@ -57,7 +59,11 @@ const SelectedClasses = () => {
                 <td>{item.name}</td>
                 <td>{item.instructorName}</td>
                 <td>${item.price}</td>
-                <td><button className="btn btn-success">pay</button></td>
+                <td>
+                  <Link to={`/dashboard/payment/${item._id}`}>
+                    <button className="btn btn-success">pay</button>
+                  </Link>
+                </td>
                 <td>
                   <button
                     onClick={() => handleDelete(item)}
