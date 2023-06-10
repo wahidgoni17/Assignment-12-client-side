@@ -2,10 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useMyClass from "../../../Hooks/useMyClass";
 import Title from "../../../Component/Title";
+import useAuth from "../../../Hooks/useAuth";
 
 const MyClasses = () => {
   const [myClass, refetch] = useMyClass();
-  console.log(myClass);
+  const {user} = useAuth()
+  const myClassData = myClass.filter((data) => data.email === user?.email)
+  console.log(myClassData);
   return (
     <>
       <Title title={"my classes"}></Title>

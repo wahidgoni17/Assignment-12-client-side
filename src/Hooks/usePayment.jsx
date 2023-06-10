@@ -3,18 +3,18 @@ import useAuth from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
-const useMyClass = () => {
+const usePayment = () => {
   const { loading } = useAuth();
   const [axiosSecure] = useAxiosSecure();
-  const {data: myClass = [], refetch} = useQuery({
-    queryKey: ["myClass"],
+  const {data: payment = [], refetch} = useQuery({
+    queryKey: ["payment"],
     enabled: !loading,
     queryFn: async () => {
-      const res = await axiosSecure(`/class`)
+      const res = await axiosSecure(`/payments`)
       return res.data
     },
   })
-  return [myClass, refetch]
+  return [payment, refetch]
 };
 
-export default useMyClass;
+export default usePayment;
