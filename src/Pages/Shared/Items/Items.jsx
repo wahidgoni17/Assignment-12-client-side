@@ -15,22 +15,16 @@ const Items = ({ item }) => {
   const { image, name, instructorName, price, availableSeats } = item;
   const handleAddClass = () => {
     if (user && user?.email) {
-      const classItem = {classItemId : item._id, image, name, instructorName, price, availableSeats}
-      fetch("http://localhost:5050/classCart", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(classItem),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
+      // const classItem = {classItemId : item._id, image, name, instructorName, price, availableSeats, email: user?.email}
+     axios.post('http://localhost:5050/classCart',{classItemId : item._id, image, name, instructorName, price, availableSeats, email: user?.email})
+        .then((res) => {
+          const data = res.data
+          console.log(data)
           if (data.insertedId) {
             refetch()
-            Swal.fire("Successfully!", "class added successfully", "success");
+            Swal.fire("Successfully!", "item added successfully", "success");
           }
-        });
+        })
     }
     else{
       Swal.fire("oops!", "please login first", "error");
