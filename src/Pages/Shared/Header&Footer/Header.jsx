@@ -37,7 +37,7 @@ const Header = () => {
               </li>
               {user && (
                 <li>
-                  <Link to="dashboard">Dashboard</Link>
+                  <Link to="/dashboard/dbhome">Dashboard</Link>
                 </li>
               )}
             </ul>
