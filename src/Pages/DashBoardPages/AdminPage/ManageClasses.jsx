@@ -6,18 +6,32 @@ import Swal from "sweetalert2";
 
 const ManageClasses = () => {
   const [myClass, refetch] = useMyClass();
-  const [axiosSecure] = useAxiosSecure()
-  const handleApprove = (item) =>{
-    axiosSecure.patch( `http://localhost:5050/class/approve/${item._id}`)
-    .then((res) => {
-      const data = res.data;
-      console.log(data);
-      if (data.modifiedCount) {
-        refetch();
-        Swal.fire("Approved!", "Class is an Approved", "success");
-      }
-    });
-  }
+  const [axiosSecure] = useAxiosSecure();
+  const handleApprove = (item) => {
+    axiosSecure
+      .patch(`http://localhost:5050/class/approve/${item._id}`)
+      .then((res) => {
+        const data = res.data;
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire("Approved!", "Class is an Approved", "success");
+        }
+      });
+  };
+  const handleDeny = (item) => {
+    axiosSecure
+      .patch(`http://localhost:5050/class/deny/${item._id}`)
+      .then((res) => {
+        const data = res.data;
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire("Denied!", "Class is Denied", "error");
+        }
+      });
+  };
+
   return (
     <>
       <Title title={"Manage classes"}></Title>
@@ -54,13 +68,15 @@ const ManageClasses = () => {
                 </td>
                 <td>{item.name}</td>
                 <td>{item.instructorName}</td>
-                <td>{item.email}</td>
-                <td>{item.availableSeats}</td>
+                <td>{item.email || "anonymous"}</td>
+                <td className="text-center">{item.availableSeats}</td>
                 <td>${item.price}</td>
                 <td>{item.status}</td>
                 <td>
                   <button
-                    disabled={item.status === "approved"}
+                    disabled={
+                      item.status === "approved" || item.status === "denied"
+                    }
                     onClick={() => handleApprove(item)}
                     className="btn btn-md text-white bg-emerald-500"
                   >
@@ -72,6 +88,7 @@ const ManageClasses = () => {
                     disabled={
                       item.status === "approved" || item.status === "denied"
                     }
+                    onClick={() => handleDeny(item)}
                     className="btn btn-md text-white bg-red-600"
                   >
                     deny
@@ -80,7 +97,6 @@ const ManageClasses = () => {
                 <td>
                   <button
                     className="btn btn-md text-white bg-amber-700"
-                    onClick={() => window.my_modal_4.showModal()}
                   >
                     send feedback
                   </button>
@@ -89,15 +105,6 @@ const ManageClasses = () => {
             ))}
           </tbody>
         </table>
-        <dialog id="my_modal_4" className="modal">
-          <form method="dialog" className="modal-box w-1/2 max-w-5xl">
-            <h3 className="font-bold text-lg">Hello!</h3>
-            <input type="text" name="feedback" placeholder="Write Feedback Here" className="input input-bordered w-full" />
-            <div className="modal-action">
-              <input className="btn bg-green-400 text-white" type="submit" value="Send Feedback" />
-            </div>
-          </form>
-        </dialog>
       </div>
     </>
   );
