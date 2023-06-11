@@ -9,7 +9,7 @@ const ManageClasses = () => {
   const [axiosSecure] = useAxiosSecure();
   const handleApprove = (item) => {
     axiosSecure
-      .patch(`http://localhost:5050/class/approve/${item._id}`)
+      .patch(`https://summer-camp-server-side-omega.vercel.app/class/approve/${item._id}`)
       .then((res) => {
         const data = res.data;
         console.log(data);
@@ -21,7 +21,7 @@ const ManageClasses = () => {
   };
   const handleDeny = (item) => {
     axiosSecure
-      .patch(`http://localhost:5050/class/deny/${item._id}`)
+      .patch(`https://summer-camp-server-side-omega.vercel.app/class/deny/${item._id}`)
       .then((res) => {
         const data = res.data;
         console.log(data);
