@@ -1,9 +1,23 @@
 import React from "react";
 import useMyClass from "../../../Hooks/useMyClass";
 import Title from "../../../Component/Title";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ManageClasses = () => {
   const [myClass, refetch] = useMyClass();
+  const [axiosSecure] = useAxiosSecure()
+  const handleApprove = (item) =>{
+    axiosSecure.patch( `http://localhost:5050/class/approve/${item._id}`)
+    .then((res) => {
+      const data = res.data;
+      console.log(data);
+      if (data.modifiedCount) {
+        refetch();
+        Swal.fire("Approved!", "Class is an Approved", "success");
+      }
+    });
+  }
   return (
     <>
       <Title title={"Manage classes"}></Title>
@@ -45,17 +59,29 @@ const ManageClasses = () => {
                 <td>${item.price}</td>
                 <td>{item.status}</td>
                 <td>
-                  <button disabled={item.status === "approved"} className="btn btn-md text-white bg-emerald-500">
+                  <button
+                    disabled={item.status === "approved"}
+                    onClick={() => handleApprove(item)}
+                    className="btn btn-md text-white bg-emerald-500"
+                  >
                     approve
                   </button>
                 </td>
                 <td>
-                  <button disabled={item.status === "approved" || item.status === "denied"} className="btn btn-md text-white bg-red-600">
+                  <button
+                    disabled={
+                      item.status === "approved" || item.status === "denied"
+                    }
+                    className="btn btn-md text-white bg-red-600"
+                  >
                     deny
                   </button>
                 </td>
                 <td>
-                <button className="btn btn-md text-white bg-amber-700">
+                  <button
+                    className="btn btn-md text-white bg-amber-700"
+                    onClick={() => window.my_modal_4.showModal()}
+                  >
                     send feedback
                   </button>
                 </td>
@@ -63,6 +89,15 @@ const ManageClasses = () => {
             ))}
           </tbody>
         </table>
+        <dialog id="my_modal_4" className="modal">
+          <form method="dialog" className="modal-box w-1/2 max-w-5xl">
+            <h3 className="font-bold text-lg">Hello!</h3>
+            <input type="text" name="feedback" placeholder="Write Feedback Here" className="input input-bordered w-full" />
+            <div className="modal-action">
+              <input className="btn bg-green-400 text-white" type="submit" value="Send Feedback" />
+            </div>
+          </form>
+        </dialog>
       </div>
     </>
   );

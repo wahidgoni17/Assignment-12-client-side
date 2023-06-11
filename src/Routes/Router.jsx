@@ -17,7 +17,6 @@ import AddClass from "../Pages/DashBoardPages/InstructorPage/AddClass";
 import InstructorRoute from "./InstructorRoute";
 import AdminRoute from "./AdminRoute";
 import Payment from "../Pages/DashBoardPages/StudentPage/Payment";
-import DbHome from "../Pages/DashBoardPages/DbHome/DbHome";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -49,10 +48,6 @@ const Router = createBrowserRouter([
     path: "dashboard",
     element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
     children: [
-        {
-          path: "dbhome",
-          element: <DbHome></DbHome>
-        },
         {
           path: 'selectedClasses',
           element: <SelectedClasses/>
